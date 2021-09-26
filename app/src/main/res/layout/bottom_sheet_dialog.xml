@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/idRLBSheet"
+    android:background="@color/blue_shade_1">
+
+    <TextView
+        android:id="@+id/idTVNameOnCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:padding="4dp"
+        android:text="Name On Card"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/idIVPayment"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/idTVNameOnCard"
+        android:layout_centerVertical="true"
+        android:layout_margin="4dp"
+        android:padding="4dp"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/idTVAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/idTVNameOnCard"
+        android:layout_margin="4dp"
+        android:layout_toRightOf="@+id/idIVPayment"
+        android:padding="3dp"
+        android:textSize="18sp"
+        android:text="Payment Amount"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/idTVCardNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/idTVAmount"
+        android:layout_margin="4dp"
+        android:layout_toRightOf="@+id/idIVPayment"
+        android:padding="3dp"
+        android:text="Card Number"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/idTVExpDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/idTVCardNumber"
+        android:layout_margin="4dp"
+        android:layout_toRightOf="@+id/idIVPayment"
+        android:padding="3dp"
+        android:text="Expiry Date"
+        android:textColor="@color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_below="@+id/idIVPayment"
+        >
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:text="Edit Payment"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:id="@+id/idBtnEdit"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:text="View Details"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:id="@+id/idBtnViewDetails"
+            />
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>
