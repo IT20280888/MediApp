@@ -35,6 +35,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import io.paperdb.Paper;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    //calling Views
     private DatabaseReference ProductsRef;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -48,6 +49,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        //Calling products from firebase using products table
         ProductsRef = FirebaseDatabase.getInstance("https://madnewproject-6ccb8-default-rtdb.firebaseio.com/").getReference().child("Products");
 
         drawerLayout=findViewById(R.id.drawer_layout);
@@ -57,13 +59,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         toolbar.setTitle("Home");
         setSupportActionBar(toolbar);
 
+        //Navigation Drawer
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
-
+        //Navigation Drawer Calling User name
         View headerView = navigationView.getHeaderView(0);
         TextView userNameTextView = headerView.findViewById(R.id.user_profile_name);
         CircleImageView profileImageView = headerView.findViewById(R.id.user_profile_image);
@@ -74,6 +77,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
+        //Calling action button as fab to goto cartActivity.
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +89,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     }
     @Override
+    //When activity start getting visible to user then onStart() will be called.
     protected void onStart() {
         super.onStart();
         FirebaseRecyclerOptions<Products> options =
@@ -95,6 +100,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter =
                 new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
                     @Override
+                    //update the RecyclerView.ViewHolder contents with the item at the given position
                     protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model)
                     {
                         holder.txtProductName.setText(model.getPname());
@@ -103,6 +109,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         Picasso.get().load(model.getImage()).into(holder.imageView);
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
+                            //When activity clicked user will redirected to ProdctDetailsActivity
                             public void onClick(View view) {
                                 Intent intent =new Intent(HomeActivity.this,ProductDetailsActivity.class);
                                 intent.putExtra("pid",model.getPid());
@@ -113,6 +120,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
                     @NonNull
                     @Override
+                    //create a new RecyclerView and initializes some private fields to be used by RecyclerView.
                     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_items_layout, parent, false);
                         ProductViewHolder holder = new ProductViewHolder(view);
@@ -138,14 +146,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        //When click the cart button it wil redirected to cart activity.
         if (id == R.id.nav_cart) {
             Intent intent = new Intent(HomeActivity.this,CartActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_cart) {
-            Intent intent = new Intent(HomeActivity.this,CartActivity.class);
-            startActivity(intent);
 
-
+            //When click the logout button it will redirected to MainActivity with logout.
         }  else if (id == R.id.nav_logout) {
             Paper.book().destroy();
             Intent intent=new Intent(HomeActivity.this,MainActivity.class);

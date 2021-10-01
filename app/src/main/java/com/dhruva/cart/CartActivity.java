@@ -50,6 +50,8 @@ public class CartActivity extends AppCompatActivity{
         NextProcessBtn = (Button)findViewById(R.id.next_btn);
         txtTotalAmount = (TextView)findViewById(R.id.total_price);
         NextProcessBtn.setOnClickListener(new View.OnClickListener() {
+
+            //if successfully placed.
             @Override
             public void onClick(View view) {
                 Toast.makeText(CartActivity.this,"Item Placed Successfully.",Toast.LENGTH_LONG).show();
@@ -87,6 +89,7 @@ public class CartActivity extends AppCompatActivity{
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
+                    //Calling popup menu
                     public void onClick(View view) {
                         CharSequence options[] = new CharSequence[]
                                 {
@@ -110,7 +113,9 @@ public class CartActivity extends AppCompatActivity{
                                             .child(model.getPid())
                                             .removeValue()
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                //Item removing function
                                                 @Override
+                                                //onComplete-Called when the delete task completes.
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if (task.isSuccessful()){
                                                         Toast.makeText(CartActivity.this,"Item removed Successfully.",Toast.LENGTH_LONG).show();
@@ -129,6 +134,7 @@ public class CartActivity extends AppCompatActivity{
 
             @NonNull
             @Override
+            //Called when RecyclerView needs a new RecyclerView.ViewHolder of the given type to represent an item.
             public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_items_layout,parent,false);
                 CartViewHolder holder = new CartViewHolder(view);

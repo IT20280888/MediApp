@@ -54,18 +54,19 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view)
             {
                 LoginButton.setText("Login");
-                AdminLink.setVisibility(View.VISIBLE);
-                NotAdminLink.setVisibility(View.INVISIBLE);
                 parentDbName = "Users";
             }
         });
 
     }
+
+    //LOgin function
     private void LoginUser()
     {
         String phone = InputPhoneNumber.getText().toString();
         String password = InputPassword.getText().toString();
 
+        //Validation Part login if text inputs are empty
         if (TextUtils.isEmpty(phone))
         {
             Toast.makeText(this, "Please write your phone number...", Toast.LENGTH_SHORT).show();
@@ -90,6 +91,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if(chkBoxRememberMe.isChecked())
         {
+            //Remember phone number and password
             Paper.book().write(Prevalent.UserPhoneKey, phone);
             Paper.book().write(Prevalent.UserPasswordKey, password);
         }
@@ -100,6 +102,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child(parentDbName).child(phone).exists()){
 
+                    //Inputted data validate with each other.
                     Users usersData = dataSnapshot.child(parentDbName).child(phone).getValue(Users.class);
                     if (usersData.getPhone().equals(phone))
                     {
@@ -113,7 +116,6 @@ public class LoginActivity extends AppCompatActivity {
                                 Prevalent.currentOnlineUser = usersData;
                                 startActivity(intent);
                             }
-
                         }
                         else {
                             loadingBar.dismiss();
