@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/btn_color"
-    android:backgroundTint="@color/btn_color"
+    android:background="@drawable/wallp"
     tools:context="com.dhruva.cart.ProductDetailsActivity">
 
 
@@ -15,23 +14,27 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/product_image_details"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="-335dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="-1dp"
 
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="2dp"
         android:gravity="center"
         android:text="Product Name"
         android:textColor="@android:color/black"
         android:textSize="30sp"
         android:textStyle="bold" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/product_image_details"
         android:layout_width="258dp"
         android:layout_height="274dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="88dp"
-        android:scaleType="centerCrop" />
+        android:layout_marginTop="32dp"
+        android:scaleType="centerCrop"
+        app:civ_border_color="@color/colorOnSecondary"
+        app:civ_border_width="6dp" />
 
     <TextView
         android:id="@+id/product_description_details"
@@ -39,8 +42,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/product_name_details"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="360dp"
+        android:layout_marginStart="-2dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="Product Description"
         android:textColor="@android:color/black"
@@ -54,9 +57,9 @@
         android:layout_below="@+id/product_description_details"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="-3dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="4dp"
+        android:layout_marginStart="-2dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="3dp"
         android:gravity="center"
         android:text="Product Price"
         android:textColor="@android:color/black"

@@ -38,6 +38,8 @@ public class CartActivity extends AppCompatActivity{
     private TextView txtTotalAmount, txtMsg1;
     private int overTotalPrice=0;
     @Override
+
+    //Layout files and buttons calling
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
@@ -47,16 +49,10 @@ public class CartActivity extends AppCompatActivity{
         recyclerView.setLayoutManager(layoutManager);
         NextProcessBtn = (Button)findViewById(R.id.next_btn);
         txtTotalAmount = (TextView)findViewById(R.id.total_price);
-        txtMsg1 = (TextView)findViewById(R.id.msg1);
         NextProcessBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                txtTotalAmount.setText("Total Price = Rs."+String.valueOf(overTotalPrice));
-//                Intent intent = new Intent(CartActivity.this,ConfirmFinalOrderActivity.class);
-//                intent.putExtra("Total Price", String.valueOf(overTotalPrice));
-//                startActivity(intent);
-//                finish();
-                Toast.makeText(CartActivity.this,"Item Placed Successfully. \uD83D\uDE06 \uD83D\uDE05 \uD83D\uDE02 \uD83E\uDD23\n",Toast.LENGTH_LONG).show();
+                Toast.makeText(CartActivity.this,"Item Placed Successfully.",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -65,21 +61,27 @@ public class CartActivity extends AppCompatActivity{
     @Override
     protected void onStart() {
         super.onStart();
-        //CheckOrderState();
+        //Calling firebase database
         final DatabaseReference cartListRef = FirebaseDatabase.getInstance("https://madnewproject-6ccb8-default-rtdb.firebaseio.com/").getReference().child("Cart List");
         FirebaseRecyclerOptions<Cart> options =
                 new FirebaseRecyclerOptions.Builder<Cart>()
                         .setQuery(cartListRef.child("User view")
+                                //Get data from products stable
                                 .child(Prevalent.currentOnlineUser.getPhone()).child("Products"),Cart.class).build();
         FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter
                 = new FirebaseRecyclerAdapter<Cart, CartViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull CartViewHolder holder, int position, @NonNull final Cart model) {
+                // Get and hold quantity
                 holder.txtProductQuantity.setText("Quantity = "+model.getQuantity());
+                // Get and hold productPrice
                 holder.txtProductPrice.setText("Price = "+"Rs."+model.getPrice()+"");
+                // Get and hold product name
                 holder.txtProductName.setText(model.getPname());
+                // Get and hold product per price
                 holder.txtProdctPerPrice.setText("Total Price = Rs." + ((Integer.valueOf(model.getPrice())))* Integer.valueOf(model.getQuantity()) );
 
+                // Calculate Total price of one product(model price * model quantity)
                 int oneTyprProductTPrice = ((Integer.valueOf(model.getPrice())))* Integer.valueOf(model.getQuantity());
                 overTotalPrice = overTotalPrice + oneTyprProductTPrice;
 
@@ -136,39 +138,6 @@ public class CartActivity extends AppCompatActivity{
         recyclerView.setAdapter(adapter);
         adapter.startListening();
     }
-//    private void CheckOrderState()
-//    {
-//        DatabaseReference ordersRef;
-//        ordersRef = FirebaseDatabase.getInstance("https://madnewproject-6ccb8-default-rtdb.firebaseio.com/").getReference().child("Orders").child(Prevalent.currentOnlineUser.getPhone());
-//        ordersRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                if (dataSnapshot.exists()){
-//                    String shippingState = dataSnapshot.child("state").getValue().toString();
-//                    String userName = dataSnapshot.child("name").getValue().toString();
-//                    if (shippingState.equals("Shipped")){
-//                        txtTotalAmount.setText("TDear "+userName+"\n order is shipped successfully.");
-//                        recyclerView.setVisibility(View.GONE);
-//                        txtMsg1.setVisibility(View.VISIBLE);
-//                        txtMsg1.setText("Congratulations, Your Final order has been shipped successfully. Soon you will received your order at your door step.");
-//                        NextProcessBtn.setVisibility(View.GONE);
-//                        Toast.makeText(CartActivity.this,"You can purchase more products, Once you received your first order",Toast.LENGTH_SHORT).show();
-//                    }
-//                    else if (shippingState.equals("Not Shipped")){
-//                        txtTotalAmount.setText("Shipping State = Not Shipped");
-//                        recyclerView.setVisibility(View.GONE);
-//                        txtMsg1.setVisibility(View.VISIBLE);
-//
-//                        NextProcessBtn.setVisibility(View.GONE);
-//                        Toast.makeText(CartActivity.this,"You can purchase more products, Once you received your first order",Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
+
+
 }

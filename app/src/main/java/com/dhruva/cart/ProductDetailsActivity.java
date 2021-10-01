@@ -51,10 +51,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-//                if (state.equals("Order Placed") || state.equals("Order Shipped")){
-//                    Toast.makeText(ProductDetailsActivity.this,"You can add Purchase more product, once your order is shipped or confirmed",Toast.LENGTH_LONG).show();
-//                }
-                //else
                 {
                     addingToCartList();
                 }
@@ -65,7 +61,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-       // CheckOrderState();
     }
 
     private void addingToCartList() {
@@ -131,34 +126,4 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
         });
     }
-
-    //
-
-//    private void CheckOrderState()
-//    {
-//        DatabaseReference ordersRef;
-//        ordersRef = FirebaseDatabase.getInstance("https://madnewproject-6ccb8-default-rtdb.firebaseio.com/").getReference().child("Orders").child(Prevalent.currentOnlineUser.getPhone());
-//        ordersRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                if (dataSnapshot.exists()){
-//                    String shippingState = dataSnapshot.child("state").getValue().toString();
-//                    if (shippingState.equals("Shipped")){
-//                        state ="Order Shipped";
-//                    }
-//                    else if (shippingState.equals("Not Shipped")){
-//                        state ="Order Placed";
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
-
-
-
 }

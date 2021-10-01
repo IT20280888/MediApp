@@ -5,7 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/buttons"
+    android:background="@drawable/wallp"
     android:fitsSystemWindows="true"
     tools:context="com.dhruva.cart.HomeActivity"
     tools:openDrawer="start">
@@ -15,8 +15,8 @@
         layout="@layout/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/buttons"
-        android:backgroundTint="@color/btn_color" />
+        android:background="@color/white"
+        android:backgroundTint="@color/white" />
 
 
     <com.google.android.material.navigation.NavigationView
