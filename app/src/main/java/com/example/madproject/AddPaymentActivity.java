@@ -19,10 +19,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class AddPaymentActivity extends AppCompatActivity {
 
-    private TextInputEditText nameOnCardEdt, cardNumberEdt, expDateEdt, cvvEdt, amountEdt;
-    private Button chooseRcptBtn;
-    private Button paymentBtn;
-    private ImageView rcptImg;
+    private TextInputEditText cardNumberEdt, amountEdt, cvvEdt, paymentImgEdt, paymentLinkEdt, paymentDescEdt;
+    private Button addCourseBtn;
     private ProgressBar loadingPB;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -32,30 +30,29 @@ public class AddPaymentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_payment);
-        nameOnCardEdt = findViewById(R.id.idEdtCardName);
-        cardNumberEdt = findViewById(R.id.idEdtCardNumber);
-        expDateEdt = findViewById(R.id.idEdtExpDate);
-        cvvEdt = findViewById(R.id.idEdtCVV);
-        amountEdt = findViewById(R.id.idEdtAmount);
-        chooseRcptBtn = findViewById(R.id.button_choose_image);
-        rcptImg = findViewById(R.id.image_view);
-        paymentBtn = findViewById(R.id.idBtnAddPayment);
+        cardNumberEdt = findViewById(R.id.idEdtCourseName);
+        amountEdt = findViewById(R.id.idEdtCoursePrice);
+        cvvEdt = findViewById(R.id.idEdtCourseSuitedFor);
+        paymentImgEdt = findViewById(R.id.idEdtCourseImageLink);
+        paymentLinkEdt = findViewById(R.id.idEdtCourseLink);
+        paymentDescEdt = findViewById(R.id.idEdtCourseDesc);
+        addCourseBtn = findViewById(R.id.idBtnAddCourse);
         loadingPB = findViewById(R.id.idPBLoading);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Payments");
 
-        paymentBtn.setOnClickListener(new View.OnClickListener() {
+        addCourseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loadingPB.setVisibility(View.VISIBLE);
-                String nameOnCard = nameOnCardEdt.getText().toString();
                 String cardNumber = cardNumberEdt.getText().toString();
-                String expDate = expDateEdt.getText().toString();
-                String cvv = cvvEdt.getText().toString();
                 String amount = amountEdt.getText().toString();
-                //String rcptImage = rcptImg.getText().toString;
-                paymentID = nameOnCard;
-                PaymentRVModel paymentRVModel = new PaymentRVModel(nameOnCard, cardNumber, expDate, cvv, amount, paymentID);
+                String cvv = cvvEdt.getText().toString();
+                String paymentImg = paymentImgEdt.getText().toString();
+                String paymentLink = paymentLinkEdt.getText().toString();
+                String paymentDesc = paymentDescEdt.getText().toString();
+                paymentID = cardNumber;
+                PaymentRVModel paymentRVModel = new PaymentRVModel(cardNumber, amount, cvv, paymentImg, paymentLink, paymentDesc, paymentID);
 
                     databaseReference.addValueEventListener(new ValueEventListener() {
                         @Override

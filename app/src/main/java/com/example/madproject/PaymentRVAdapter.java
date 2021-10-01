@@ -37,11 +37,11 @@ public class PaymentRVAdapter extends RecyclerView.Adapter<PaymentRVAdapter.View
         }
 
         @Override
-        public void onBindViewHolder(@NonNull PaymentRVAdapter.ViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             PaymentRVModel paymentRVModel = paymentRVModelArrayList.get(position);
-            holder.nameOnCardTV.setText(paymentRVModel.getNameOnCard());
-            holder.paymentAmountTV.setText("Rs. " + paymentRVModel.getAmount());
-//            Picasso.get().load(paymentRVModel.getPaymentImg()).into(holder.paymentIV);
+            holder.cardNumberTV.setText(paymentRVModel.getCardNumber());
+            holder.paymentAmountTV.setText("Rs. " + paymentRVModel.getPaymentAmount());
+            Picasso.get().load(paymentRVModel.getPaymentImg()).into(holder.paymentIV);
             setAnimation(holder.itemView, position);
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -69,14 +69,14 @@ public class PaymentRVAdapter extends RecyclerView.Adapter<PaymentRVAdapter.View
 
         public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView nameOnCardTV, paymentAmountTV;
+        private TextView cardNumberTV, paymentAmountTV;
         private ImageView paymentIV;
 
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
-                nameOnCardTV = itemView.findViewById(R.id.idTVNameOnCard);
-                paymentAmountTV = itemView.findViewById(R.id.idTVAmount);
-                paymentIV = itemView.findViewById(R.id.idIVPayment);
+                cardNumberTV = itemView.findViewById(R.id.idTVCardNumber);
+                paymentAmountTV = itemView.findViewById(R.id.idTVPrice);
+                paymentIV = itemView.findViewById(R.id.idIVCourse);
             }
         }
 

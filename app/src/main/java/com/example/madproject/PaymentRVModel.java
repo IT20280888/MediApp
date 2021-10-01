@@ -5,25 +5,25 @@ import android.os.Parcelable;
 
 public class PaymentRVModel implements Parcelable {
 
-    private String nameOnCard;
     private String cardNumber;
-    private String expDate;
-    private String cvv;
-    private String amount;
-    private String rcptImg;
+    private String paymentAmount;
+    private String paymentCvv;
+    private String paymentImg;
+    private String paymentLink;
+    private String paymentDescription;
     private String paymentID;
 
-    public PaymentRVModel(String nameOnCard, String cardNumber, String expDate, String cvv, String amount, String paymentID) {
+    public PaymentRVModel() {
 
     }
 
     protected PaymentRVModel(Parcel in) {
-        nameOnCard = in.readString();
         cardNumber = in.readString();
-        expDate = in.readString();
-        cvv = in.readString();
-        amount = in.readString();
-        rcptImg = in.readString();
+        paymentAmount = in.readString();
+        paymentCvv = in.readString();
+        paymentImg = in.readString();
+        paymentLink = in.readString();
+        paymentDescription = in.readString();
         paymentID = in.readString();
     }
 
@@ -39,52 +39,52 @@ public class PaymentRVModel implements Parcelable {
         }
     };
 
-    public String getNameOnCard() {
-        return nameOnCard;
-    }
-
-    public void setNameOnCard(String nameOnCard) {
-        this.nameOnCard = nameOnCard;
-    }
-
     public String getCardNumber() {
         return cardNumber;
     }
 
-    public void setCardNumber(String cardNumber) {
+    public void setCardNumber(String nameOnCard) {
         this.cardNumber = cardNumber;
     }
 
-    public String getExpDate() {
-        return expDate;
+    public String getPaymentAmount() {
+        return paymentAmount;
     }
 
-    public void setExpDate(String expDate) {
-        this.expDate = expDate;
+    public void setPaymentAmount(String cardNumber) {
+        this.paymentAmount = paymentAmount;
     }
 
-    public String getCvv() {
-        return cvv;
+    public String getPaymentCvv() {
+        return paymentCvv;
     }
 
-    public void setCvv(String cvv) {
-        this.cvv = cvv;
+    public void setPaymentCvv(String expDate) {
+        this.paymentCvv = paymentCvv;
     }
 
-    public String getAmount() {
-        return amount;
+    public String getPaymentImg() {
+        return paymentImg;
     }
 
-    public void setAmount(String amount) {
-        this.amount = amount;
+    public void setPaymentImg(String cvv) {
+        this.paymentImg = paymentImg;
     }
 
-    public String getRcptImg() {
-        return rcptImg;
+    public String getPaymentLink() {
+        return paymentLink;
     }
 
-    public void setRcptImg(String rcptImg) {
-        this.rcptImg = rcptImg;
+    public void setPaymentLink(String amount) {
+        this.paymentLink = paymentLink;
+    }
+
+    public String getPaymentDescription() {
+        return paymentDescription;
+    }
+
+    public void setPaymentDescription(String rcptImg) {
+        this.paymentDescription = paymentDescription;
     }
 
     public String getPaymentID() {
@@ -95,13 +95,13 @@ public class PaymentRVModel implements Parcelable {
         this.paymentID = paymentID;
     }
 
-    public PaymentRVModel(String nameOnCard, String cardNumber, String expDate, String cvv, String amount, String rcptImg, String paymentID) {
-        this.nameOnCard = nameOnCard;
+    public PaymentRVModel(String cardNumber, String paymentAmount, String paymentCvv, String paymentImg, String paymentLink, String paymentDescription, String paymentID) {
         this.cardNumber = cardNumber;
-        this.expDate = expDate;
-        this.cvv = cvv;
-        this.amount = amount;
-        this.rcptImg = rcptImg;
+        this.paymentAmount = paymentAmount;
+        this.paymentCvv = paymentCvv;
+        this.paymentImg = paymentImg;
+        this.paymentLink = paymentLink;
+        this.paymentDescription = paymentDescription;
         this.paymentID = paymentID;
     }
 
@@ -112,12 +112,12 @@ public class PaymentRVModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(nameOnCard);
         dest.writeString(cardNumber);
-        dest.writeString(expDate);
-        dest.writeString(cvv);
-        dest.writeString(amount);
-        dest.writeString(rcptImg);
+        dest.writeString(paymentAmount);
+        dest.writeString(paymentCvv);
+        dest.writeString(paymentImg);
+        dest.writeString(paymentLink);
+        dest.writeString(paymentDescription);
         dest.writeString(paymentID);
     }
 }

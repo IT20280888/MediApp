@@ -14,7 +14,7 @@
         android:background="@color/blue_shade_1">
 
         <ImageView
-            android:id="@+id/idIVPayment"
+            android:id="@+id/idIVCourse"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop" />
@@ -22,23 +22,23 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Name On Card"
+            android:text="Card Number"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:layout_below="@+id/idIVPayment"
+            android:layout_below="@+id/idIVCourse"
             android:layout_margin="3dp"
             android:singleLine="true"
-            android:layout_toLeftOf="@id/idTVAmount"
-            android:id="@+id/idTVNameOnCard"
+            android:layout_toLeftOf="@id/idTVPrice"
+            android:id="@+id/idTVCardNumber"
             android:padding="4dp"
             android:textSize="15sp"
             />
 
     <TextView
-        android:id="@+id/idTVAmount"
+        android:id="@+id/idTVPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/idIVPayment"
+        android:layout_below="@+id/idIVCourse"
         android:layout_alignParentEnd="true"
         android:layout_margin="3dp"
         android:singleLine="true"

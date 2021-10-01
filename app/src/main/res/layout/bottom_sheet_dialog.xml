@@ -6,58 +6,60 @@
     android:background="@color/blue_shade_1">
 
     <TextView
-        android:id="@+id/idTVNameOnCard"
+        android:id="@+id/idTVCourseName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:padding="4dp"
-        android:text="Name On Card"
+        android:text="Card Number"
         android:textColor="@color/white"
         android:textSize="15sp"
         android:textStyle="bold" />
 
     <ImageView
-        android:id="@+id/idIVPayment"
+        android:id="@+id/idIVCourse"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_below="@id/idTVNameOnCard"
+        android:layout_below="@id/idTVCourseName"
         android:layout_centerVertical="true"
         android:layout_margin="4dp"
         android:padding="4dp"
         android:src="@mipmap/ic_launcher" />
 
     <TextView
-        android:id="@+id/idTVAmount"
+        android:id="@+id/idTVDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/idTVNameOnCard"
+        android:layout_below="@+id/idTVCourseName"
         android:layout_margin="4dp"
-        android:layout_toRightOf="@+id/idIVPayment"
+        android:layout_toRightOf="@+id/idIVCourse"
         android:padding="3dp"
         android:textSize="18sp"
-        android:text="Payment Amount"
+        android:text="Description"
         android:textColor="@color/white" />
 
     <TextView
-        android:id="@+id/idTVCardNumber"
+        android:id="@+id/idTVSuitedFor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/idTVAmount"
+        android:layout_below="@+id/idTVDescription"
         android:layout_margin="4dp"
-        android:layout_toRightOf="@+id/idIVPayment"
+        android:layout_toRightOf="@+id/idIVCourse"
         android:padding="3dp"
-        android:text="Card Number"
+        android:text="CVV"
         android:textColor="@color/white" />
 
     <TextView
-        android:id="@+id/idTVExpDate"
+        android:id="@+id/idTVPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/idTVCardNumber"
+        android:layout_below="@+id/idTVSuitedFor"
         android:layout_margin="4dp"
-        android:layout_toRightOf="@+id/idIVPayment"
+        android:layout_toRightOf="@+id/idIVCourse"
         android:padding="3dp"
-        android:text="Expiry Date"
+        android:text="Amount"
+        android:textSize="18sp"
+        android:textStyle="bold"
         android:textColor="@color/white" />
 
     <LinearLayout
@@ -65,7 +67,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="2"
-        android:layout_below="@+id/idIVPayment"
+        android:layout_below="@+id/idTVPrice"
         >
 
         <Button

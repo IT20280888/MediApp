@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -47,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements PaymentRVAdapter.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        paymentRV = findViewById(R.id.idRVPayments);
+        paymentRV = findViewById(R.id.idRVCourses);
         loadingPB = findViewById(R.id.idPBLoading);
         addFAB = findViewById(R.id.idAddFAB);
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -117,19 +119,19 @@ public class MainActivity extends AppCompatActivity implements PaymentRVAdapter.
         bottomSheetDialog.setCanceledOnTouchOutside(true);
         bottomSheetDialog.show();
 
-        TextView nameOnCardTV = layout.findViewById(R.id.idTVNameOnCard);
-        TextView amountTV = layout.findViewById(R.id.idTVAmount);
-        TextView cardNumberTV = layout.findViewById(R.id.idTVCardNumber);
-        TextView expDateTV = layout.findViewById(R.id.idTVExpDate);
-        ImageView paymentIV = layout.findViewById(R.id.idIVPayment);
+        TextView cardNumberTV = layout.findViewById(R.id.idTVCourseName);
+        TextView descriptionTV = layout.findViewById(R.id.idTVDescription);
+        TextView cvvTV = layout.findViewById(R.id.idTVSuitedFor);
+        TextView amountTV = layout.findViewById(R.id.idTVPrice);
+        ImageView paymentIV = layout.findViewById(R.id.idIVCourse);
         Button editBtn = layout.findViewById(R.id.idBtnEdit);
         Button viewDetailsBtn = layout.findViewById(R.id.idBtnViewDetails);
 
-        nameOnCardTV.setText(paymentRVModel.getNameOnCard());
-        amountTV.setText("Rs. "+ paymentRVModel.getAmount());
         cardNumberTV.setText(paymentRVModel.getCardNumber());
-        expDateTV.setText(paymentRVModel.getExpDate());
-        Picasso.get().load(paymentRVModel.getRcptImg()).into(paymentIV);
+        descriptionTV.setText(paymentRVModel.getPaymentDescription());
+        amountTV.setText("Rs. "+ paymentRVModel.getPaymentAmount());
+        cvvTV.setText(paymentRVModel.getPaymentCvv());
+        Picasso.get().load(paymentRVModel.getPaymentImg()).into(paymentIV);
 
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,21 +142,22 @@ public class MainActivity extends AppCompatActivity implements PaymentRVAdapter.
             }
         });
 
-//        viewDetailsBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(Intent.ACTION_VIEW);
-//                //i.setData(Uri.parse(paymentRVModel.getPaymentLink()));
-//                startActivity(i);
-//            }
-//        });
+        viewDetailsBtn.setOnClickListener(new View.OnClickListener() {
+           @Override
+          public void onClick(View v) {
+               Intent i = new Intent(Intent.ACTION_VIEW);
+               i.setData(Uri.parse(paymentRVModel.getPaymentLink()));
+               startActivity(i);
+          }
+       });
     }
 
-//    @Override
-//    public boolean onCreateOptionMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return true;
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

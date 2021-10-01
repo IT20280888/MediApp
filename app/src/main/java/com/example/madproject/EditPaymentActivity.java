@@ -23,10 +23,8 @@ import java.util.Map;
 
 public class EditPaymentActivity extends AppCompatActivity {
 
-    private TextInputEditText nameOnCardEdt, cardNumberEdt, expDateEdt, cvvEdt, amountEdt;
-    private Button chooseRcptBtn;
+    private TextInputEditText cardNumberEdt, amountEdt, cvvEdt, paymentImgEdt, paymentLinkEdt, paymentDescEdt;
     private Button updatePaymentBtn, deletePaymentBtn;
-    private ImageView rcptImg;
     private ProgressBar loadingPB;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -38,24 +36,23 @@ public class EditPaymentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_payment);
         firebaseDatabase = FirebaseDatabase.getInstance();
-        nameOnCardEdt = findViewById(R.id.idEdtCardName);
-        cardNumberEdt = findViewById(R.id.idEdtCardNumber);
-        expDateEdt = findViewById(R.id.idEdtExpDate);
-        cvvEdt = findViewById(R.id.idEdtCVV);
-        amountEdt = findViewById(R.id.idEdtAmount);
-        chooseRcptBtn = findViewById(R.id.button_choose_image);
-        rcptImg = findViewById(R.id.image_view);
-        updatePaymentBtn = findViewById(R.id.idBtnEditPayment);
-        deletePaymentBtn = findViewById(R.id.idBtnDeletePayment);
+        cardNumberEdt = findViewById(R.id.idEdtCourseName);
+        amountEdt = findViewById(R.id.idEdtCoursePrice);
+        cvvEdt = findViewById(R.id.idEdtCourseSuitedFor);
+        paymentImgEdt = findViewById(R.id.idEdtCourseImageLink);
+        paymentLinkEdt = findViewById(R.id.idEdtCourseLink);
+        paymentDescEdt = findViewById(R.id.idEdtCourseDesc);
+        updatePaymentBtn = findViewById(R.id.idBtnAddCourse);
+        deletePaymentBtn = findViewById(R.id.idBtnDeleteCourse);
         loadingPB = findViewById(R.id.idPBLoading);
         paymentRVModel = getIntent().getParcelableExtra("payment");
         if(paymentRVModel!=null){
-            nameOnCardEdt.setText(paymentRVModel.getNameOnCard());
             cardNumberEdt.setText(paymentRVModel.getCardNumber());
-            expDateEdt.setText(paymentRVModel.getExpDate());
-            cvvEdt.setText(paymentRVModel.getCvv());
-            amountEdt.setText(paymentRVModel.getAmount());
-            //rcptImg.setText(paymentRVModel).get
+            amountEdt.setText(paymentRVModel.getPaymentAmount());
+            cvvEdt.setText(paymentRVModel.getPaymentCvv());
+            paymentImgEdt.setText(paymentRVModel.getPaymentImg());
+            paymentLinkEdt.setText(paymentRVModel.getPaymentLink());
+            paymentDescEdt.setText(paymentRVModel.getPaymentDescription());
             paymentID = paymentRVModel.getPaymentID();
 
         }
@@ -65,19 +62,20 @@ public class EditPaymentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loadingPB.setVisibility(View.VISIBLE);
-                String nameOnCard = nameOnCardEdt.getText().toString();
                 String cardNumber = cardNumberEdt.getText().toString();
-                String expDate = expDateEdt.getText().toString();
-                String cvv = cvvEdt.getText().toString();
                 String amount = amountEdt.getText().toString();
+                String cvv = cvvEdt.getText().toString();
+                String paymentImg = paymentImgEdt.getText().toString();
+                String paymentLink = paymentLinkEdt.getText().toString();
+                String paymentDesc = paymentDescEdt.getText().toString();
 
                 Map<String,Object> map = new HashMap<>();
-                map.put("nameOnCard", nameOnCard);
                 map.put("cardNumber", cardNumber);
-                map.put("expDate", expDate);
-                map.put("cvv", cvv);
-                map.put("amount", amount);
-                //map.put("rcptImg", rcptImg);
+                map.put("paymentAmount", amount);
+                map.put("paymentCvv", cvv);
+                map.put("paymentImg", paymentImg);
+                map.put("paymentLink", paymentLink);
+                map.put("paymentDescription", paymentDesc);
                 map.put("paymentID", paymentID);
 
                 databaseReference.addValueEventListener(new ValueEventListener() {

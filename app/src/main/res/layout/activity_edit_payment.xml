@@ -13,7 +13,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
@@ -21,15 +21,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
-                android:hint="Enter Name On Card"
+                android:hint="Enter Card Number"
                 android:padding="5dp"
                 android:textColorHint="@color/white"
                 app:hintTextColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/idEdtCardName"
+                    android:id="@+id/idEdtCourseName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:importantForAutofill="no"
@@ -46,40 +46,17 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:hint="Enter Card Number"
+                android:hint="Enter Amount"
                 android:padding="5dp"
                 android:textColorHint="@color/white"
                 app:hintTextColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/idEdtCardNumber"
+                    android:id="@+id/idEdtCoursePrice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:importantForAutofill="no"
                     android:inputType="number"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
-                    android:textSize="14sp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:hint="Enter Expiry Date"
-                android:padding="5dp"
-                android:textColorHint="@color/white"
-                app:hintTextColor="@color/white">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/idEdtExpDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:importantForAutofill="no"
-                    android:inputType="date"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
                     android:textSize="14sp" />
@@ -98,11 +75,11 @@
                 app:hintTextColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/idEdtCVV"
+                    android:id="@+id/idEdtCourseSuitedFor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:importantForAutofill="no"
-                    android:inputType="numberPassword"
+                    android:inputType="text"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
                     android:textSize="14sp" />
@@ -115,43 +92,68 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:hint="Enter AMOUNT"
+                android:hint="Enter Reciept Image Link"
                 android:padding="5dp"
                 android:textColorHint="@color/white"
                 app:hintTextColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/idEdtAmount"
+                    android:id="@+id/idEdtCourseImageLink"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:importantForAutofill="no"
-                    android:inputType="number"
+                    android:inputType="text"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
                     android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-
-            <Button
-                android:id="@+id/button_choose_image"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="60dp"
-                android:layout_marginEnd="28dp"
-                android:background="@drawable/custom_button_back"
-                android:text="Choose Reciept"
-                android:textColor="@color/white" />
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:hint="Enter Payment Link"
+                android:padding="5dp"
+                android:textColorHint="@color/white"
+                app:hintTextColor="@color/white">
 
-            <ImageView
-                android:id="@+id/image_view"
-                android:layout_width="164dp"
-                android:layout_height="113dp"
-                android:layout_above="@+id/button_choose_image"
-                android:layout_below="@+id/button_upload_image"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="28dp" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/idEdtCourseLink"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:hint="Enter Payment Description"
+                android:padding="5dp"
+                android:textColorHint="@color/white"
+                app:hintTextColor="@color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/idEdtCourseDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:importantForAutofill="no"
+                    android:inputType="textMultiLine|textImeMultiLine"
+                    android:singleLine="false"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -159,30 +161,31 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:weightSum="2"
                 android:orientation="horizontal"
                 >
-                <Button
-                    android:id="@+id/idBtnEditPayment"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:background="@drawable/custom_button_back"
-                    android:textColor="@color/white"
-                    android:text="Edit \nPayment"
-                    android:textAllCaps="false" />
 
                 <Button
-                    android:id="@+id/idBtnDeletePayment"
+                    android:id="@+id/idBtnUpdateCourse"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
+                    android:layout_weight="1"
                     android:background="@drawable/custom_button_back"
-                    android:textColor="@color/white"
+                    android:text="Update \nPayment"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
+                <Button
+                    android:id="@+id/idBtnDeleteCourse"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_button_back"
                     android:text="Delete \nPayment"
-                    android:textAllCaps="false" />
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
 
             </LinearLayout>
 
